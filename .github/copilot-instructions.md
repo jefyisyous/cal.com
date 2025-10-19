@@ -228,10 +228,11 @@ dates.map((date) => dayjs.utc(date).add(1, "day").format());
 dates.map((date) => new Date(date.valueOf() + 24 * 60 * 60 * 1000));
 ```
 
-**Prefer date-fns over Day.js when timezone awareness isn't critical:**
+**Prefer date-fns over Day.js when timezone awareness isn't critical (for new code):**
 - Use `startOfMonth(dateObj)` / `endOfDay(dateObj)` instead of `dayjs.startOf(...)`
 - Use built-in `Intl` API with `i18n.language` for locale-dependent formatting
 - Day.js's plugin system is heavy and preloads all plugins including locale handling
+- Note: Existing code may use Day.js; this guidance applies primarily to new implementations
 
 ## Next.js App Directory Guidelines
 
@@ -334,7 +335,7 @@ Add new strings to the translation system even if related strings already exist.
 
 ## Type Safety Rules
 
-**Type casting with "as any" is strictly forbidden.** Use proper type-safe solutions:
+**Type casting with "as any" should be avoided.** Always prefer proper type-safe solutions:
 - Prisma extensions system
 - Type parameter constraints
 - Repository pattern isolation
